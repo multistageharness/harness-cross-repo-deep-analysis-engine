@@ -13,6 +13,7 @@
  * State writes: git_metadata, last_step
  */
 
+import { GIT_TOKEN } from "../../constant.mjs";
 import { banner, getLogger } from "../loggingSetup.js";
 import type { WorkflowState } from "../state.js";
 
@@ -49,7 +50,7 @@ export async function extractGitMetadata(state: WorkflowState): Promise<Partial<
 }
 
 function buildHeaders(): Record<string, string> {
-  const githubToken = (process.env.GITHUB_TOKEN || "").trim();
+  const githubToken = GIT_TOKEN;
   const headers: Record<string, string> = {
     Accept: "application/vnd.github+json",
     "X-GitHub-Api-Version": "2022-11-28",

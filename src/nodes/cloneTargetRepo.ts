@@ -3,7 +3,8 @@
  *
  * Pops the next repo from queue and shallow-clones it into .harness/<repo_name>.
  *
- * Credentials: GITHUB_TOKEN is injected into the HTTPS clone URL for private repos.
+ * Credentials: GIT_TOKEN (from constant.mjs) is injected into the HTTPS clone URL
+ * for private repos; the clone host comes from GITHUB_BASE_HOST (constant.mjs).
  * Constraint: no push-capable credentials are loaded; read-only token only.
  * Shell: NEVER spawned. All subprocess calls go through src/shell.ts run().
  *
@@ -26,6 +27,7 @@ import { existsSync, mkdirSync, rmSync } from "node:fs";
 import * as path from "node:path";
 import * as readline from "node:readline/promises";
 
+import { GIT_TOKEN, GITHUB_BASE_HOST } from "../../constant.mjs";
 import { banner, getLogger } from "../loggingSetup.js";
 import { ShellError, requireBinary, run } from "../shell.js";
 import type { RepoEntry, WorkflowState } from "../state.js";
@@ -154,12 +156,13 @@ export async function cloneTargetRepo(state: WorkflowState): Promise<Partial<Wor
   mkdirSync(path.dirname(cloneDir), { recursive: true });
 
   // Inject token into HTTPS URL for private repos.
-  // Pattern: https://<token>@github.com/owner/name.git
+  // Pattern: https://<GIT_TOKEN>@<GITHUB_BASE_HOST>/owner/name.git
   // This avoids interactive credential prompts in CI/CD environments.
+  // GIT_TOKEN and GITHUB_BASE_HOST resolve from constant.mjs (env-overridable).
   let cloneUrl = url;
-  const githubToken = (process.env.GITHUB_TOKEN || "").trim();
-  if (githubToken && cloneUrl.startsWith("https://github.com/")) {
-    cloneUrl = cloneUrl.replace("https://github.com/", `https://${githubToken}@github.com/`);
+  const hostPrefix = `https://${GITHUB_BASE_HOST}/`;
+  if (GIT_TOKEN && cloneUrl.startsWith(hostPrefix)) {
+    cloneUrl = cloneUrl.replace(hostPrefix, `https://${GIT_TOKEN}@${GITHUB_BASE_HOST}/`);
   }
 
   log.info("Cloning %s -> %s", url, cloneDir);

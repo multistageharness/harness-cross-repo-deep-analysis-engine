@@ -14,6 +14,7 @@ import * as path from "node:path";
 
 import { parse as parseYaml } from "yaml";
 
+import { GITHUB_BASE_HOST, GIT_TOKEN } from "../../constant.mjs";
 import { banner, getLogger } from "../loggingSetup.js";
 import type { RepoEntry, WorkflowState } from "../state.js";
 
@@ -58,7 +59,8 @@ export async function initializeAndSortQueue(state: WorkflowState): Promise<Part
   }
 
   // Build request headers -- GitHub token is optional but recommended.
-  const githubToken = (process.env.GITHUB_TOKEN || "").trim();
+  // GIT_TOKEN resolves from constant.mjs (env GIT_TOKEN > GITHUB_TOKEN > file).
+  const githubToken = GIT_TOKEN;
   const headers: Record<string, string> = {
     Accept: "application/vnd.github+json",
     "X-GitHub-Api-Version": "2022-11-28",
@@ -74,7 +76,7 @@ export async function initializeAndSortQueue(state: WorkflowState): Promise<Part
   for (const entry of reposRaw) {
     const owner = (entry.owner || "").trim();
     const name = (entry.name || "").trim();
-    const url = entry.url || `https://github.com/${owner}/${name}.git`;
+    const url = entry.url || `https://${GITHUB_BASE_HOST}/${owner}/${name}.git`;
 
     if (!owner || !name) {
       log.warning("Skipping entry with missing owner/name: %s", JSON.stringify(entry));

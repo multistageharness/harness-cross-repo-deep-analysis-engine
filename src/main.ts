@@ -35,6 +35,7 @@ import * as path from "node:path";
 import { config as loadDotenv } from "dotenv";
 import { parse as parseYaml } from "yaml";
 
+import { GITHUB_BASE_HOST } from "../constant.mjs";
 import { buildGraph } from "./graph.js";
 import { shutdownChat } from "./llm.js";
 import { banner, configureLogging, getLogger } from "./loggingSetup.js";
@@ -169,7 +170,7 @@ function dryRunPreview(reposFile: string): void {
   repos.forEach((r, i) => {
     const owner = r.owner || "?";
     const name = r.name || "?";
-    const url = r.url || `https://github.com/${owner}/${name}.git`;
+    const url = r.url || `https://${GITHUB_BASE_HOST}/${owner}/${name}.git`;
     console.log(`[dry-run]   ${i + 1}. ${owner}/${name} -- ${url}`);
   });
 
