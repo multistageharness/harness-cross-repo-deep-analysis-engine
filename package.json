@@ -15,8 +15,8 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@langchain/core": "^0.3.0",
-    "@langchain/langgraph": "^0.2.0",
+    "@langchain/core": "1.2.1",
+    "@langchain/langgraph": "1.2.7",
     "dotenv": "^16.4.0",
     "llm-sdk-github-copilot": "file:vendors/llm-sdk-github-copilot/packages/ts",
     "yaml": "^2.4.0"
@@ -25,6 +25,6 @@
     "@types/node": "^20.11.0",
     "tsx": "^4.7.0",
     "typescript": "^5.4.0",
-    "vitest": "^1.6.0"
+    "vitest": "4.1.9"
   }
 }
