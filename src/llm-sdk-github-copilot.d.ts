@@ -5,7 +5,7 @@
  * declares the narrow slice of its surface that this project consumes (the
  * `createHarness` factory + the harness methods used by `src/llm.ts`).
  *
- * Vendored via git subtree at ../../../vendors/llm-sdk-github-copilot and wired
+ * Vendored in-project at vendors/llm-sdk-github-copilot and wired
  * as a `file:` dependency in package.json. Keep this in sync with the upstream
  * `src/index.mjs` exports if the consumed surface grows.
  */

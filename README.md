@@ -53,7 +53,7 @@ make install            # or: npm install
 # 2. Install the vendored LLM SDK's own deps (in place, one-time)
 #    Node resolves the symlinked package's imports from its real location, so the
 #    Copilot SDK must be installed under the vendored package, not this project.
-( cd ../../vendors/llm-sdk-github-copilot/packages/ts && npm install )
+( cd vendors/llm-sdk-github-copilot/packages/ts && npm install )
 
 # 3. Configure environment
 cp .env.example .env

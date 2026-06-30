@@ -6,7 +6,7 @@
  * -----------------------------------------------------------------------
  * Project policy: do NOT call GitHub Copilot (or any model provider) SDK
  * directly — all LLM access goes through the `llm-sdk-github-copilot` harness,
- * which is vendored under `../../vendors/llm-sdk-github-copilot` (git subtree)
+ * which is vendored in-project under `vendors/llm-sdk-github-copilot`
  * and wired as the `file:`-installed npm package `llm-sdk-github-copilot`.
  * The harness wraps `@github/copilot-sdk` with config-driven model/effort
  * selection, token budgeting, usage tracking, and lifecycle management.

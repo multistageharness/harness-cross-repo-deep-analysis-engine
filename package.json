@@ -18,7 +18,7 @@
     "@langchain/core": "^0.3.0",
     "@langchain/langgraph": "^0.2.0",
     "dotenv": "^16.4.0",
-    "llm-sdk-github-copilot": "file:../../vendors/llm-sdk-github-copilot/packages/ts",
+    "llm-sdk-github-copilot": "file:vendors/llm-sdk-github-copilot/packages/ts",
     "yaml": "^2.4.0"
   },
   "devDependencies": {
