@@ -1,0 +1,27 @@
+# Sample input file for cross-repo-deep-analysis-engine (Node/TS)
+#
+# Required fields per repo entry:
+#   owner  -- GitHub organization or user name
+#   name   -- Repository name (used as the clone directory: .harness/<name>/)
+#
+# Optional fields:
+#   url    -- Full clone URL. Defaults to https://github.com/<owner>/<name>.git
+#
+# Repos are sorted ascending by GitHub-reported disk size before cloning,
+# so the fastest repos are processed first.
+
+repos:
+  - owner: carlosmarte
+    name: PLAYGROUND_GITHUB_ACTIONS
+  - owner: carlosmarte
+    name: PLAYGROUND_MAKEFILE
+  - owner: carlosmarte
+    name: examples-llamaIndex
+  - owner: carlosmarte
+    name: app-Clipboard2MD
+  - owner: carlosmarte
+    name: PLAYGROUND_FIND_DEPENDENCY_VERSIONS
+  - owner: carlosmarte
+    name: PLAYGROUND_PYTHON
+  - owner: carlosmarte
+    name: Primitives-langchain-langgraph

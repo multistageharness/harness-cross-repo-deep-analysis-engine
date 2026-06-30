@@ -1,0 +1,30 @@
+{
+  "name": "cross-repo-deep-analysis-engine-ts",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "LangGraph.js example: bulk-audit GitHub repos — clone, extract manifests + git metadata, run LLM stack/context analysis, and write per-repo reports. Node/TypeScript port of the Python original.",
+  "engines": {
+    "node": ">=18.17"
+  },
+  "scripts": {
+    "start": "tsx src/main.ts",
+    "dry-run": "DRY_RUN=1 tsx src/main.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@langchain/core": "^0.3.0",
+    "@langchain/langgraph": "^0.2.0",
+    "dotenv": "^16.4.0",
+    "llm-sdk-github-copilot": "file:../../vendors/llm-sdk-github-copilot/packages/ts",
+    "yaml": "^2.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.4.0",
+    "vitest": "^1.6.0"
+  }
+}
